@@ -3,29 +3,36 @@ package ej5;
 public class Fruta {
 
 	private String nombreFruta, procedencia;
-	private double nKilos, precioCoste, precioVenta;
+	private double nKilos, precioKilo, precioVentaKilo;
+	private static double beneficioAlm;
 
-	public Fruta(String nombreFruta, String procedencia, double nKilos, double precioCoste, double precioVenta) {
+	// Constructor
+	public Fruta(String nombreFruta, String procedencia, double nKilos, double precioKilo, double precioVentaKilo) {
 		this.nombreFruta = nombreFruta;
 		this.procedencia = procedencia;
 		this.nKilos = nKilos;
-		this.precioCoste = precioCoste;
-		this.precioVenta = precioVenta;
+		this.precioKilo = precioKilo;
+		this.precioVentaKilo = precioVentaKilo;
 	}
 
+	// Información cargamento fruta
 	@Override
 	public String toString() {
 		return "Fruta [nombreFruta=" + nombreFruta + ", procedencia=" + procedencia + ", nKilos=" + nKilos
-				+ ", precioCoste=" + precioCoste + ", precioVenta=" + precioVenta + "]";
+				+ ", precioKilo=" + precioKilo + ", precioVentaKilo=" + precioVentaKilo + "]";
 	}
 
-	public boolean rebajarPrecioVenta(double rebaja) {
-		if (precioVenta - rebaja < precioCoste)
-			return false;
-		precioVenta -= rebaja;
-		return true;
+	// Método rebajar
+
+	public boolean rebajarPrecioVentaKilo(double rebaja) {
+		if (precioVentaKilo - rebaja < precioKilo)
+			return false; // return precioVentaKilo ??
+		precioVentaKilo -= rebaja;
+		return true; // return precioVentaKilo ??
 
 	}
+
+	// Método vender
 
 	public double vender(double kilosVender) {
 		double importe;
@@ -34,10 +41,25 @@ public class Fruta {
 
 		else {
 			nKilos = nKilos - kilosVender;
-			importe = kilosVender * precioVenta;
+			importe = kilosVender * precioVentaKilo;
+			beneficioAlm += kilosVender * (precioVentaKilo-precioKilo);
 		}
 		return importe;
+		
+
+	}
+	// Método cargamentos
+
+	public static boolean mismaProcedencia(Fruta f1, Fruta f2) {
+		if (f1.procedencia.equalsIgnoreCase(f2.procedencia))
+			return true;
+		return false;
 
 	}
 
+	public static double getBeneficioAlm() {
+		return beneficioAlm;
+	}
+
+	
 }
