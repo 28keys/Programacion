@@ -1,21 +1,22 @@
 package Practica_18;
 
 import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class ej3 {
+public class ej4 {
 
 	public static void main(String[] args) {
-
 		/*
-		 * 3. Programa que acepta el nombre de una carpeta por teclado y borra todos los
-		 * ficheros que contiene (sólo ficheros)
+		 * 4. Modifica el programa anterior para que sólo borre los ficheros que
+		 * empiecen por una letra anotada desde teclado
 		 */
+
+		String letra;
+		String nombre;
 
 		Scanner sc = new Scanner(System.in);
 
@@ -30,21 +31,26 @@ public class ej3 {
 			if (!Files.isDirectory(carpeta))
 				System.out.println("No es un carpeta");
 			else {
+				System.out.println("Introduce la primera letra de los archivos a borrar: ");
+				letra = sc.nextLine();
+				// Recorro la carpeta
 				try {
 					DirectoryStream<Path> stream = Files.newDirectoryStream(carpeta);
 					for (Path path : stream) {
 						if (!Files.isDirectory(path)) {
-							Files.delete(path);
-							System.out.println("Archivo borrado");
+							nombre = path.getFileName().toString(); // Saco el nombre del archivo
+							if (nombre.toLowerCase().startsWith(letra.toLowerCase())) { // Compruebo si empieza por la
+																						// letra introducida // letra
+																						// introducida
+								Files.delete(path);
+								System.out.println("Archivo borrado");
+							}
+
 						}
 					}
 					stream.close();
-					Files.delete(carpeta);
-					System.out.println("Carpeta borrada");	
-				} catch(DirectoryNotEmptyException e) {
-						System.out.println("La carpeta no está vacía, no se ha podido borrar");
-					}
-				catch (IOException e) {
+
+				} catch (IOException e) {
 					System.out.println(e);
 
 				}
