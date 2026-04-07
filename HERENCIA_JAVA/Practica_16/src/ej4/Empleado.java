@@ -45,9 +45,4 @@ public class Empleado {
 		return "Empleado [Horas relizadas: " + horas + "nombre= " + nombre + ", dni= " + dni + ", direccion= "
 				+ direccion + ", telefono= " + tfno + ", Numero identificatorio = " + nEmple + "]";
 	}
-
-	public String nEmple() {
-		return "Tu numero es el : " + totalnEmple;
-	}
-
 }

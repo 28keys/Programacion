@@ -2,7 +2,7 @@ package ej4;
 
 import java.util.LinkedList;
 import java.util.Scanner;
-	
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class Main {
 					empleados.add(new Propio(nombre, dni, direccion, tfno));
 
 				} else {
-					
+
 					System.out.println("¿Cuál es la empresa de la que procedes?");
 					empProcedencia = sc.nextLine();
 
@@ -48,38 +48,38 @@ public class Main {
 				}
 				break;
 			case 2:
+				
 				System.out.println("Introduce el numero del empleado");
-				int numeroEmple=sc.nextInt();
-				int posicion=empleados.indexOf(new Empleado(numeroEmple));
-				if (posicion==-1)
+				int numeroEmple = sc.nextInt();
+				int posicion = empleados.indexOf(new Empleado(numeroEmple));
+				if (posicion == -1)
 					System.out.println("NO ESTÁ");
-				else
-				{
+				else {
 					System.out.println("Introduce el numero de horas relizadas");
 					horas = sc.nextInt();
 					empleados.get(posicion).fichar(horas);
-				
-				} 
-			/*	
-				for (Empleado e : empleados) {
-					if (e.getnEmple()==numeroEmple) {
-						System.out.println("Introduce el numero de horas relizadas");
-						horas = sc.nextInt();
-						e.fichar(horas);
-						break;
-					}
-					
-					}*/
+
+				}
+				/*
+				 * for (Empleado e : empleados) { if (e.getnEmple()==numeroEmple) {
+				 * System.out.println("Introduce el numero de horas relizadas"); horas =
+				 * sc.nextInt(); e.fichar(horas); break; }
+				 * 
+				 * }
+				 */
 				break;
 			case 3:
 				System.out.println("Introduce la cantidad que quieres repartir");
 				cantidad = sc.nextDouble();
-				double beneficio=cantidad/Propio.getTotalPropios();
-				for (Empleado e: empleados) {
+				double beneficio = cantidad / Propio.getTotalPropios();
+				for (Empleado e : empleados) {
 					if (e instanceof Propio) {
-						
+						((Propio) e).dineroRepatido(beneficio);
 					}
 				}
+				break;
+			case 4:
+				
 				
 			}
 
