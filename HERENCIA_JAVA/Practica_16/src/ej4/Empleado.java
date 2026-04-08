@@ -2,14 +2,14 @@ package ej4;
 
 import java.util.Objects;
 
-public class Empleado {
+public abstract class Empleado {
 	private String nombre, dni, direccion, tfno;
-	private int nEmple, horas;
+	private int nEmple;
+	protected int horas;
 	private static int totalnEmple = 1000;
 
 	public Empleado(String nombre, String dni, String direccion, String tfno) {
-		totalnEmple++;
-		this.nEmple = totalnEmple;
+		this.nEmple = totalnEmple++;
 		this.nombre = nombre;
 		this.dni = dni;
 		this.direccion = direccion;
@@ -19,18 +19,13 @@ public class Empleado {
 	public Empleado(int nEmple) {
 		this.nEmple = nEmple;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Empleado other = (Empleado) obj;
-		return nEmple == other.nEmple;
-	}
+	/*
+	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
+	 * if (obj == null) return false; if (!(obj instanceof Empleado)) return false;
+	 * Empleado other = (Empleado) obj; return nEmple == other.nEmple; }
+	 */
+	
+	/*Para usar el metodo equals hace falta del hashcode si no es int o string*/
 
 	public int getnEmple() {
 		return nEmple;
@@ -42,7 +37,12 @@ public class Empleado {
 
 	@Override
 	public String toString() {
-		return "Empleado [Horas relizadas: " + horas + "nombre= " + nombre + ", dni= " + dni + ", direccion= "
-				+ direccion + ", telefono= " + tfno + ", Numero identificatorio = " + nEmple + "]";
+		return "\n" + "--> Horas relizadas: " + horas + ", Nombre = " + nombre + ", DNI = " + dni + ", Dirección = "
+				+ direccion + " Telefono = " + tfno + ", Numero de Empleado = " + nEmple + "]";
 	}
+
+	abstract double pagar();
+
+	
+
 }

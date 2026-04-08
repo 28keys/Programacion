@@ -35,9 +35,11 @@ public class Main {
 				direccion = sc.nextLine();
 				System.out.println("Añade tu numero de teléfono");
 				tfno = sc.nextLine();
+				System.out.println("Introduce su salario base");
+				double salarioBase = sc.nextDouble();
 				if (tipo == 1) {
-
-					empleados.add(new Propio(nombre, dni, direccion, tfno));
+					
+					empleados.add(new Propio(nombre, dni, direccion, tfno, salarioBase));
 
 				} else {
 
@@ -48,25 +50,28 @@ public class Main {
 				}
 				break;
 			case 2:
-				
-				System.out.println("Introduce el numero del empleado");
-				int numeroEmple = sc.nextInt();
-				int posicion = empleados.indexOf(new Empleado(numeroEmple));
-				if (posicion == -1)
-					System.out.println("NO ESTÁ");
-				else {
-					System.out.println("Introduce el numero de horas relizadas");
-					horas = sc.nextInt();
-					empleados.get(posicion).fichar(horas);
-
-				}
+				System.out.println("Contenido de la lista " + empleados);
+				System.out.println();
 				/*
-				 * for (Empleado e : empleados) { if (e.getnEmple()==numeroEmple) {
+				 * 
+				 * System.out.println("Introduce el numero del empleado"); int numeroEmple =
+				 * sc.nextInt(); int posicion = empleados.indexOf(new Empleado(numeroEmple)); if
+				 * (posicion == -1) System.out.println("NO ESTÁ"); else {
 				 * System.out.println("Introduce el numero de horas relizadas"); horas =
-				 * sc.nextInt(); e.fichar(horas); break; }
+				 * sc.nextInt(); empleados.get(posicion).fichar(horas);
 				 * 
 				 * }
 				 */
+				System.out.println("Introduce el numero del empleado");
+				int numeroEmple = sc.nextInt();
+				for (Empleado e : empleados) {
+					if (e.getnEmple() == numeroEmple) {
+						System.out.println("Introduce el numero de horas relizadas");
+						horas = sc.nextInt();
+						e.fichar(horas);
+						break;
+					}
+				}
 				break;
 			case 3:
 				System.out.println("Introduce la cantidad que quieres repartir");
@@ -79,10 +84,13 @@ public class Main {
 				}
 				break;
 			case 4:
-				
-				
+				for (Empleado e : empleados)
+					System.out.println(e.toString() + " Total a pagar " + e.pagar());
+				break;
+			case 5:
+				System.out.println(empleados.toString());
+				break;
 			}
-
 		} while (opc != 6);
 
 		System.out.println(empleados.toString());

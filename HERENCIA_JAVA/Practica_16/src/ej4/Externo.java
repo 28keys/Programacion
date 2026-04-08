@@ -10,7 +10,16 @@ public class Externo extends Empleado {
 
 	@Override
 	public String toString() {
-		return "Externo : [Empresa a la cual procede :" + empProcedencia + "] " + super.toString();
+		return "\n" + "[[Empleado Externo]]" + "\n" + "--> Empresa a la cual procede : " + empProcedencia
+				+ super.toString();
+	}
+
+	@Override
+	public double pagar() {
+		double totalApagar;
+		totalApagar = horas * 22;
+		horas = 0;
+		return horas;
 	}
 
 }
