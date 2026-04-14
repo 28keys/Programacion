@@ -1,5 +1,7 @@
 package ej4;
 
+import java.util.Objects;
+
 public class Serie implements Prestable {
 
 	private String titulo;
@@ -21,6 +23,7 @@ public class Serie implements Prestable {
 
 	@Override
 	public boolean prestar() {
+
 		return prestado = true;
 
 	}
