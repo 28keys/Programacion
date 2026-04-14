@@ -10,10 +10,10 @@ public class Main {
 
 		ArrayList<Caducable> caducados = new ArrayList<Caducable>();
 		caducados.add(new Medicamento("Ibuprofeno", LocalDate.of(2024, 1, 29)));
-		caducados.add(new Medicamento("TentramiTroson", LocalDate.of(2000, 9, 5)));
+		caducados.add(new Medicamento("Frenadol", LocalDate.of(2000, 9, 5)));
 
 		caducados.add(new ClaseCarnet("Iker Marcelo Toaquiza", "2713-JSS", LocalDate.of(2027, 4, 10)));
-		caducados.add(new ClaseCarnet("Gio Siradze", "6345-XDD", LocalDate.of(2030, 6, 20)));
+		caducados.add(new ClaseCarnet("Gio Siradze", "6345-XDP", LocalDate.of(2030, 6, 20)));
 
 		for (Caducable c : caducados) {
 			System.out.println(c.toString());
