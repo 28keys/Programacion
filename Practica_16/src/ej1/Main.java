@@ -29,6 +29,14 @@ public class Main {
 			
 			
 		}
+			System.out.println("A continuación muestro todos los cursos de los "
+						+ "libros de texto de mi libreria");
+	
+				for (Libro l : libreria ) {
+					if (l instanceof Texto)
+					//if(l.getClass().getSimpleName().equals("Texto")) //dame el nombre de la clase al q pertenece este objeto
+						System.out.println(((Texto) l).getCurso());
+				}
 	}
 
 }

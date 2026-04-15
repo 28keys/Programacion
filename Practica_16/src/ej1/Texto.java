@@ -12,6 +12,9 @@ public class Texto extends Libro {
 	public String toString() {
 		return "Texto curso = " + curso + ", descuento = " + descuento + super.toString(); 
 	}
+	public String getCurso() {
+		return curso;
+	}
 	
 	
 }
