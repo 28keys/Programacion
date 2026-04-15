@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Videojuego implements Prestable {
 	private String titulo;
-	private int cont;
-	private int horasEstimadas = 10;
+	private int horasEstimadas;
 	private boolean prestado;
 	private String genero;
 	private String compañia;
+	private static double totalRecaudado;
 
 	public Videojuego(String titulo, int horasEstimadas, boolean prestado, String genero, String compañia) {
 		super();
@@ -18,59 +18,55 @@ public class Videojuego implements Prestable {
 		this.genero = genero;
 		this.compañia = compañia;
 	}
-	
-	public double getHoras (double horas){
-		return horas+=horasEstimadas+horas;
+
+	public Videojuego(String titulo, boolean prestado, String genero, String compañia) {
+		super();
+		horasEstimadas = 10;
+		this.titulo = titulo;
+		this.prestado = prestado;
+		this.genero = genero;
+		this.compañia = compañia;
 	}
-		
-	public double prestamoRecaudado (double horasTotales) {
-		double recaudado;
-		recaudado = horasTotales*0.5;
-		return recaudad
+
+	public static double getTotalRecaudado() {
+		return totalRecaudado;
 	}
-	
+
 	public String getTitulo() {
 		return titulo;
 	}
 
 	@Override
 	public boolean prestar() {
-		cont++;
-		return prestado = true;
+		if (prestado = false) {
+			prestado = true;
+			totalRecaudado = totalRecaudado + horasEstimadas * 0.5;
+			return true;
+		} else
+			System.out.println("Este producto no se puede prestar");
+		return false;
 	}
 
 	@Override
 	public boolean devolver() {
-		return prestado = false;
+		if (prestado = true) {
+			prestado = false;
+			return true;
+		} else
+			System.out.println("Este producto no se puede devolver");
+		return false;
+
 	}
 
 	@Override
 	public boolean isEntregado() {
-		return prestado = true;
+		return prestado;
 	}
 
 	@Override
 	public String toString() {
-		return "Videojuego [titulo=" + titulo + ", horasEstimadas=" + horasEstimadas + ", prestado=" + prestado
-				+ ", genero=" + genero + ", compañia=" + compañia + "]";
+		return "Videojuego = " + "\n" + "[titulo=" + titulo + ", horasEstimadas=" + horasEstimadas + ", prestado="
+				+ prestado + ", genero=" + genero + ", compañia=" + compañia + "]" + "\n";
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(titulo);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Videojuego other = (Videojuego) obj;
-		return Objects.equals(titulo, other.titulo);
-	}
-
-	
 }
