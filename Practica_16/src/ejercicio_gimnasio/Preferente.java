@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Preferente extends Socio {
+	private int numeroSocio;
 
 	public Preferente(String nombre, String apellido, String tfno, LocalDate fechaNacimiento) {
 		super(nombre, apellido, tfno, fechaNacimiento);
-		this.codigoSocio = "P" + numero;
+		numeroSocio++;
+		this.codigoSocio = "P" + numeroSocio;
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class Preferente extends Socio {
 
 	@Override
 	public String toString() {
-		return "\n" + "Socio Preferente  = " + "\n" + super.toString();
+		return "\n" + "Socio Preferente  : " + "\n" + super.toString();
 	}
 
 }

@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Resto extends Socio {
+	private static int numeroSocio;
 
 	public Resto(String nombre, String apellido, String tfno, LocalDate fechaNacimiento) {
 		super(nombre, apellido, tfno, fechaNacimiento);
-		this.codigoSocio = "N" + numero;
+		numeroSocio++;
+		this.codigoSocio = "N" + numeroSocio;
 	}
 
 	@Override
@@ -17,7 +19,6 @@ public class Resto extends Socio {
 
 	@Override
 	LocalTime salirGimnasio() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -29,7 +30,7 @@ public class Resto extends Socio {
 
 	@Override
 	public String toString() {
-		return "\n" + "Socio Resto = " + "\n" + super.toString();
+		return "\n" + "Socio Resto : " + "\n" + super.toString();
 	}
 
 }

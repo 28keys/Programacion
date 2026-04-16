@@ -8,14 +8,10 @@ public abstract class Socio {
 	private String apellido;
 	private String tfno;
 	private LocalDate fechaNacimiento;
-	protected static int numero = 1000;
 	protected String codigoSocio;
 
 	public Socio(String nombre, String apellido, String tfno, LocalDate fechaNacimiento) {
 		super();
-
-		this.codigoSocio = "" + numero;
-		numero++;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.tfno = tfno;
@@ -23,8 +19,13 @@ public abstract class Socio {
 
 	}
 
+	
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
 	}
 
 	public String getCodigoSocio() {
@@ -39,8 +40,8 @@ public abstract class Socio {
 
 	@Override
 	public String toString() {
-		return "Mi codigo de socio: " + codigoSocio + " Tu nombre =" + nombre + ", Apellido =" + apellido
-				+ ", Telefono =" + tfno + ", Fecha de nacimiento =" + fechaNacimiento + "]";
+		return "Mi codigo de socio: " + codigoSocio + "\n" + "Tu nombre = " + nombre + ", Apellido = " + apellido
+				+ ", Telefono = " + tfno + ", Fecha de nacimiento = " + fechaNacimiento;
 	}
 
 }
