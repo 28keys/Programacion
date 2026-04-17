@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 public class Resto extends Socio {
 	private static int numeroSocio;
+	private double importeTotal;
 
 	public Resto(String nombre, String apellido, String tfno, LocalDate fechaNacimiento) {
 		super(nombre, apellido, tfno, fechaNacimiento);
@@ -12,20 +13,27 @@ public class Resto extends Socio {
 		this.codigoSocio = "N" + numeroSocio;
 	}
 
-	@Override
-	LocalTime entradaGimnasio(LocalTime horaEntrada) {
-		return horaEntrada;
+	public long salirGimnasio() {
+		long tpo = super.salirGimnasio();
+		if (tpo < 30)
+			importeTotal += 6;
+		else if (tpo < 60)
+			importeTotal += 9;
+		else
+			importeTotal += 12;
+		return tpo;
 	}
 
 	@Override
-	LocalTime salirGimnasio() {
-		return null;
-	}
-
-	@Override
-	double mensualidad() {
-		// TODO Auto-generated method stub
-		return 0;
+	double cobrarMensualidad() {
+		double importe = importeTotal;
+		if (getEdad() > 60) {
+			importe = importe * 0.8;
+		}
+		vecesMes = 0;
+		importeTotal = 0;
+		tiempoTotal = 0;
+		return importe;
 	}
 
 	@Override

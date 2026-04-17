@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Preferente extends Socio {
-	private int numeroSocio;
+	private static int numeroSocio;
+	private double importeTotal;
 
 	public Preferente(String nombre, String apellido, String tfno, LocalDate fechaNacimiento) {
 		super(nombre, apellido, tfno, fechaNacimiento);
@@ -13,19 +14,18 @@ public class Preferente extends Socio {
 	}
 
 	@Override
-	LocalTime entradaGimnasio(LocalTime horaEntrada) {
-		return horaEntrada;
-	}
+	public double cobrarMensualidad() {
+		double importe = importeTotal;
+		importe = 10 + (2 * vecesMes);
+		if (getEdad() > 60) {
+			importe = importe * 0.8;
+		}
+		vecesMes = 0;
+		importeTotal = 0;
+		tiempoTotal = 0;
 
-	@Override
-	LocalTime salirGimnasio() {
-		return null;
-	}
+		return importe;
 
-	@Override
-	double mensualidad() {
-
-		return 0;
 	}
 
 	@Override

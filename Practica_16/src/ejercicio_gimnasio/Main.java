@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -25,7 +26,8 @@ public class Main {
 			System.out.println("3. Salir del gym");
 			System.out.println("4. Informacion visitas y horas al gym");
 			System.out.println("5. Cobrar mensualidad");
-			System.out.println("6. Salir");
+			System.out.println("6. Mostrar socios");
+			System.out.println("7. Salir");
 			System.out.println("--------------");
 			opc = sc.nextInt();
 			switch (opc) {
@@ -60,40 +62,74 @@ public class Main {
 				break;
 			case 2:
 				sc.nextLine();
-				System.out.println("Introduce tu codigo de socio ");
+				System.out.println("Anota codigo:");
 				codigoSocio = sc.nextLine();
-				System.out.println("Tu codigo es " + codigoSocio);
 				boolean encontrado = false;
 				for (Socio s : socios) {
-					if (s.getCodigoSocio().equals(codigoSocio)) {
-						System.out.println("Tu codigo es correcto");
-						System.out.println("Estas entrando al gimnasio");
-						LocalTime horaEntrada = LocalTime.now();
-						System.out.println("Has entrado a las " + s.entradaGimnasio(horaEntrada));
+					// for(int i=0;i<socios.size();i++){
+					// socios.get(i).getCodigo().equals(codigo)
+					if (s.getCodigoSocio().equalsIgnoreCase(codigoSocio)) {
+						if (s.entradaGimnasio())
+							System.out.println("Ha entrado con éxito ");
+						else
+							System.out.println("Ya estaba dentro ");
 						encontrado = true;
+						break;
 					}
 				}
-				if (encontrado == false) {
-					System.out.println("Socio no encontrado");
-				}
+				if (!encontrado)
+					System.out.println("No existe el socio");
 				break;
 			case 3:
 				sc.nextLine();
 				System.out.println("Introduce tu codigo de socio");
-				try {
-					codigoSocio = sc.nextLine();
-					buscarCodigo(socios, codigoSocio);
-				} catch (CodigoNoEsta e) {
-					System.out.println("No se encuentra el código");
+				codigoSocio = sc.nextLine();
+				Socio s = buscarCodigo(socios, codigoSocio);
+				if (s == null) {
+					System.out.println("No existe ese socio");
+				} else {
+					long resultado = s.salirGimnasio();
+					if (resultado == 0) {
+						System.out.println("El socio no estaba dentro");
+					} else {
+						System.out.println("Salida registrada a los " + resultado + " segundos");
+					}
 				}
-				
 				break;
 			case 4:
 				System.out.println(socios.toString());
+				break;
+			case 5:
+				for (Socio so : socios) {
+					if (so instanceof Preferente)
+						System.out.println(
+								so + "\n" + "Tiene que pagar como socio preferente " + so.cobrarMensualidad() + " €");
+					if (so instanceof Resto)
+						System.out.println(
+								so + "\n" + "Tiene que pagar como socio normal " + so.cobrarMensualidad() + " €");
+				}
+				break;
 
+			case 6:
+				int elige;
+				System.out.println("1 = ¿Alfabeticamente o de  2 = menor a mayor edad ?");
+				elige = sc.nextInt();
+				if (elige == 1) {
+					Collections.sort(socios, new SociosPorAlfabeto());
+					for (Socio soc : socios) {
+						System.out.println(soc);
+					}
+				} else {
+					Collections.sort(socios, new SociosPorEdad());
+					for (Socio soc : socios) {
+						System.out.println(soc);
+					}
+				}
 				break;
 			}
-		} while (opc != 6);
+
+		} while (opc != 7);
+
 	}
 
 	public static void buscarSocio(LinkedList<Socio> socios, String nombre, String apellido)
@@ -104,11 +140,13 @@ public class Main {
 		}
 	}
 
-	public static void buscarCodigo(LinkedList<Socio> socios, String codigoSocio) throws CodigoNoEsta {
+	public static Socio buscarCodigo(LinkedList<Socio> socios, String codigoSocio) {
 		for (Socio s : socios) {
-			if (!s.getCodigoSocio().equalsIgnoreCase(codigoSocio))
-				throw new CodigoNoEsta("El codigo no está");
+			if (s.getCodigoSocio().equalsIgnoreCase(codigoSocio))
+				return s;
+
 		}
+		return null;
 
 	}
 }

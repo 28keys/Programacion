@@ -1,6 +1,6 @@
 package ej1;
 
-class Libro implements Comparable <Libro>{
+class Libro {
 
 	private String titulo, autor, editorial;
 	private double precio;
@@ -19,11 +19,6 @@ class Libro implements Comparable <Libro>{
 
 	public double getPrecio() {
 		return precio;
-	}
-
-	@Override
-	public int compareTo(Libro o) {
-		return titulo.compareTo(o.titulo);
 	}
 
 	

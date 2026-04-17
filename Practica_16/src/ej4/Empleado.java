@@ -38,7 +38,7 @@ public abstract class Empleado {
 	@Override
 	public String toString() {
 		return "\n" + "--> Horas relizadas: " + horas + ", Nombre = " + nombre + ", DNI = " + dni + ", Dirección = "
-				+ direccion + " Telefono = " + tfno + ", Numero de Empleado = " + nEmple + "]";
+				+ direccion + ", Telefono = " + tfno + ", Numero de Empleado = " + nEmple + "]";
 	}
 
 	abstract double pagar();

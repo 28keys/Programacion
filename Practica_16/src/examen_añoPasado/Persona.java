@@ -1,8 +1,5 @@
 package examen_añoPasado;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 public class Persona {
 	private int edad;
 	double altura;
@@ -12,11 +9,7 @@ public class Persona {
 		this.edad = edad;
 		this.altura = altura;
 	}
-
-	public long calcularEdad(LocalDate fechaNacimiento) {
-		LocalDate hoy = LocalDate.now();
-		long difftotaldias = ChronoUnit.YEARS.between(hoy, fechaNacimiento);
-		return difftotaldias;
-
+	public int calcularEdad (String fechaNacimiento) {
+			
 	}
 }

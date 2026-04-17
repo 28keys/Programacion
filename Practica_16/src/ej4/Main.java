@@ -35,17 +35,16 @@ public class Main {
 				direccion = sc.nextLine();
 				System.out.println("Añade tu numero de teléfono");
 				tfno = sc.nextLine();
-				System.out.println("Introduce su salario base");
-				double salarioBase = sc.nextDouble();
+
 				if (tipo == 1) {
-					
+					System.out.println("Introduce su salario base");
+					double salarioBase = sc.nextDouble();
 					empleados.add(new Propio(nombre, dni, direccion, tfno, salarioBase));
 
 				} else {
 
 					System.out.println("¿Cuál es la empresa de la que procedes?");
 					empProcedencia = sc.nextLine();
-
 					empleados.add(new Externo(nombre, dni, direccion, tfno, empProcedencia));
 				}
 				break;
@@ -85,7 +84,7 @@ public class Main {
 				break;
 			case 4:
 				for (Empleado e : empleados)
-					System.out.println(e.toString() + " Total a pagar " + e.pagar());
+					System.out.println(e.toString() + "\n" + " Total a pagar " + e.pagar());
 				break;
 			case 5:
 				System.out.println(empleados.toString());
